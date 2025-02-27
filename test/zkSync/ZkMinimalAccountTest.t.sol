@@ -23,13 +23,14 @@ contract ZkMinimalAccountTest is Test {
     uint256 constant AMOUNT = 1e18;
     bytes32 constant EMPTY_BYTES32 = bytes32(0);
     address constant FOUNDRY_DEFAULT_ACCOUNT = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
+    address constant ANVIL_DEFAULT_ACCOUNT = 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC;
 
 
     function setUp() public {
         minimalAccount = new ZkMinimalAccount();
         minimalAccount.transferOwnership(ANVIL_DEFAULT_ACCOUNT);
         usdc = new ERC20Mock();
-        vm.deal(minimalAccount, AMOUNT);
+        vm.deal(address(minimalAccount), AMOUNT);
     }
 
     function testZkOwnerCanExecuteCommands() public {
